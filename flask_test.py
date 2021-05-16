@@ -1,5 +1,6 @@
 from flask import Flask, render_template, make_response, jsonify, request
 from py2neo import Graph,Node
+from config import neo_uri, neo_user, neo_pwd
 
 app = Flask(__name__)
 
@@ -31,9 +32,9 @@ def qs1():
             res[key] = value
 
         query=res["query"]
-        uri='http://35.222.165.255:7687'
-        user='neo4j'
-        pwd='pMyp7ZVNgvmLqlP1'
+        uri=neo_uri
+        user=neo_user
+        pwd=neo_pwd
 
         graph = Graph(uri, auth=(user, pwd), port=7474)
         result=graph.run(query).data()
